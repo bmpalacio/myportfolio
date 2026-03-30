@@ -8,12 +8,12 @@ window.SITE_CONFIG = {
   linkedinUrl: "https://www.linkedin.com/in/bpalacio6/",
   email: "bianca.m.palacio@gmail.com",
   /** ISO date (YYYY-MM-DD); shown in footer as M/D/YY */
-  lastUpdated: "2026-03-29",
+  lastUpdated: "2026-03-30",
   games: [
     {
-      title: "Stay alive",
-      description: "Stay alive as long as you can by avoiding obstacles.",
-      url: "https://bmpalacio.github.io/stay-alive/",
+      title: "Stay afloat",
+      description: "Stay afloat as long as you can. The game gets harder over time.",
+      url: "https://bmpalacio.github.io/stay-afloat/",
     },
     {
       title: "Hero tower defense",

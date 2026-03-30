@@ -39,6 +39,17 @@ This site uses **relative** asset paths (`styles.css`, `config.js`), so it works
 
 You do not need the final Pages URL to develop locally. After you know your GitHub username and repo name, the live URL follows the pattern above.
 
+## Publishing with GitHub Actions (recommended if Pages stays stale)
+
+This repo includes [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). It uploads the repo root as the Pages artifact and deploys with **`cancel-in-progress: false`** so a run is not replaced mid-flight by another push.
+
+1. **Settings → Pages → Build and deployment**
+2. Set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+3. After the next push to `main`, open the **Actions** tab and confirm **Deploy GitHub Pages** completes with a green check.
+4. Hard-refresh the live site or wait a minute for the CDN.
+
+If GitHub asks to approve workflow permissions the first time, allow **Read and write** for Pages under **Settings → Actions → General → Workflow permissions**.
+
 ## If the site is stale but `main` is correct (Actions queued / cancelled)
 
 GitHub Pages can use **GitHub Actions** (“pages build and deployment”) or **Deploy from a branch**. For a static site like this, **Deploy from a branch** is simpler and avoids long queues or runs being **cancelled** when new commits arrive.

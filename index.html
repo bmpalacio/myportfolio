@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio — games, links, and contact."
+    />
+    <meta property="og:title" content="Portfolio" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:type" content="website" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header">
+      <div class="header__inner">
+        <img
+          id="avatar"
+          class="avatar"
+          hidden
+          alt=""
+          width="96"
+          height="96"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="header__text">
+          <h1 id="site-name" class="title">Your Name</h1>
+          <p id="site-tagline" class="tagline">
+            Builder of small web games and experiments.
+          </p>
+          <p class="header__meta">
+            <a id="github-profile-link" class="inline-link" href="#" hidden
+              >GitHub profile</a
+            >
+            <span id="github-sep" class="sep" hidden aria-hidden="true">·</span>
+            <span class="last-updated"
+              >Last updated: <time id="last-updated"></time
+            ></span>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      <section class="section" aria-labelledby="games-heading">
+        <h2 id="games-heading" class="section__title">Games</h2>
+        <p class="section__lede">
+          Playable builds hosted on GitHub Pages. Add or change links in
+          <code>config.js</code>.
+        </p>
+        <ul id="games-list" class="games"></ul>
+      </section>
+
+      <section class="section section--contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" class="section__title">Contact</h2>
+        <p class="section__lede">
+          <a
+            id="linkedin-link"
+            class="button button--primary"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          >
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        Hosted on
+        <a
+          href="https://pages.github.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub Pages</a
+        >.
+      </p>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

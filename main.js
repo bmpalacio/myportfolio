@@ -8,9 +8,6 @@
     return d.innerHTML;
   };
 
-  document.getElementById("site-name").textContent = cfg.name;
-  document.getElementById("site-tagline").textContent = cfg.tagline;
-
   function safeHttpUrl(u) {
     try {
       const parsed = new URL(u);
@@ -21,31 +18,92 @@
     }
   }
 
+  function formatMDY(iso) {
+    if (!iso) return "";
+    const d = new Date(iso + (iso.length === 10 ? "T12:00:00" : ""));
+    if (Number.isNaN(d.getTime())) return iso;
+    const m = d.getMonth() + 1;
+    const day = d.getDate();
+    const yy = String(d.getFullYear()).slice(-2);
+    return `${m}/${day}/${yy}`;
+  }
+
+  document.getElementById("site-name").textContent = cfg.name;
+  document.getElementById("site-tagline").textContent = cfg.tagline;
+
   const gh = cfg.githubUsername;
   const avatarEl = document.getElementById("avatar");
-  const ghLink = document.getElementById("github-profile-link");
-  const ghSep = document.getElementById("github-sep");
   if (gh && gh !== "YOUR_GITHUB_USERNAME") {
     const profileUrl = `https://github.com/${encodeURIComponent(gh)}`;
     avatarEl.src = `${profileUrl}.png`;
     avatarEl.alt = `${cfg.name} — GitHub profile photo`;
     avatarEl.hidden = false;
-    ghLink.href = profileUrl;
-    ghLink.hidden = false;
-    ghSep.hidden = false;
   } else {
     avatarEl.hidden = true;
     avatarEl.alt = "";
   }
 
-  const li = document.getElementById("linkedin-link");
-  li.href = cfg.linkedinUrl || "#";
-  if (!cfg.linkedinUrl || cfg.linkedinUrl.includes("YOUR_PROFILE")) {
-    li.setAttribute("aria-disabled", "true");
-    li.classList.add("link-placeholder");
+  const footerLinkedIn = document.getElementById("footer-linkedin");
+  const liUrl = cfg.linkedinUrl && safeHttpUrl(cfg.linkedinUrl);
+  if (footerLinkedIn) {
+    if (liUrl) {
+      footerLinkedIn.href = liUrl;
+    } else {
+      footerLinkedIn.hidden = true;
+    }
   }
 
-  document.getElementById("last-updated").textContent = cfg.lastUpdated || "";
+  const footerGitHub = document.getElementById("footer-github");
+  if (footerGitHub && gh && gh !== "YOUR_GITHUB_USERNAME") {
+    footerGitHub.href = `https://github.com/${encodeURIComponent(gh)}`;
+  }
+
+  const emailBtn = document.getElementById("email-copy");
+  const emailFeedback = document.getElementById("email-copy-feedback");
+  const email = cfg.email || "";
+  let copyTimer;
+
+  function showCopied() {
+    if (!emailFeedback) return;
+    emailFeedback.hidden = false;
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () {
+      emailFeedback.hidden = true;
+    }, 2000);
+  }
+
+  async function copyEmail() {
+    if (!email) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      showCopied();
+    } catch {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = email;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showCopied();
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+
+  if (emailBtn) {
+    emailBtn.addEventListener("click", copyEmail);
+  }
+
+  const footerUpdated = document.getElementById("footer-last-updated");
+  if (footerUpdated) {
+    const mdy = formatMDY(cfg.lastUpdated);
+    footerUpdated.textContent = mdy ? `Last updated: ${mdy}` : "";
+  }
 
   const list = document.getElementById("games-list");
   list.innerHTML = "";

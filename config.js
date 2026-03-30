@@ -1,29 +1,29 @@
 /**
- * Edit this file with your details, then commit and push.
- * Repo name is only needed if you use a build tool with a non-root base;
- * this static site uses relative URLs and works on GitHub Pages project sites.
+ * Site content. Update linkedinUrl with your public profile URL if needed.
  */
 window.SITE_CONFIG = {
-  name: "Your Name",
-  tagline: "Builder of small web games and experiments.",
+  name: "Bianca Palacio",
+  tagline: "Group Product Manager with 10 years in e-commerce",
   githubUsername: "bmpalacio",
-  linkedinUrl: "https://www.linkedin.com/in/YOUR_PROFILE/",
-  /** Bump when you change the site (shown in the footer). */
+  linkedinUrl: "https://www.linkedin.com/in/biancapalacio",
+  email: "bianca.m.palacio@gmail.com",
+  /** ISO date (YYYY-MM-DD); shown in footer as M/D/YY */
   lastUpdated: "2026-03-29",
   games: [
     {
-      title: "Game one",
-      description: "Short line about what it is.",
+      title: "Stay alive",
+      description: "Stay alive as long as you can by avoiding obstacles.",
       url: "https://bmpalacio.github.io/game-one/",
     },
     {
-      title: "Game two",
-      description: "Short line about what it is.",
+      title: "Hero tower defense",
+      description: "Defend your hero's tower against incoming enemies.",
       url: "https://bmpalacio.github.io/game-two/",
     },
     {
-      title: "Game three",
-      description: "Short line about what it is.",
+      title: "ePuzzle",
+      description:
+        "Upload any image and decide how many pieces to complete the puzzle.",
       url: "https://bmpalacio.github.io/game-three/",
     },
   ],

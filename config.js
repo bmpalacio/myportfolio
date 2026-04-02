@@ -3,7 +3,6 @@
  */
 window.SITE_CONFIG = {
   name: "Bianca Palacio",
-  /** Used for meta / Open Graph only (not shown in the header). */
   tagline: "Group Product Manager with 10 years in e-commerce",
   githubUsername: "bmpalacio",
   linkedinUrl: "https://www.linkedin.com/in/bpalacio6/",

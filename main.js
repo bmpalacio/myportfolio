@@ -29,6 +29,7 @@
   }
 
   document.getElementById("site-name").textContent = cfg.name;
+  document.getElementById("site-tagline").textContent = cfg.tagline;
 
   const gh = cfg.githubUsername;
   const avatarEl = document.getElementById("avatar");
@@ -42,23 +43,23 @@
     avatarEl.alt = "";
   }
 
-  const headerLinkedIn = document.getElementById("header-linkedin");
+  const footerLinkedIn = document.getElementById("footer-linkedin");
   const liUrl = cfg.linkedinUrl && safeHttpUrl(cfg.linkedinUrl);
-  if (headerLinkedIn) {
+  if (footerLinkedIn) {
     if (liUrl) {
-      headerLinkedIn.href = liUrl;
+      footerLinkedIn.href = liUrl;
     } else {
-      headerLinkedIn.hidden = true;
+      footerLinkedIn.hidden = true;
     }
   }
 
-  const headerGitHub = document.getElementById("header-github");
-  if (headerGitHub && gh && gh !== "YOUR_GITHUB_USERNAME") {
-    headerGitHub.href = `https://github.com/${encodeURIComponent(gh)}`;
+  const footerGitHub = document.getElementById("footer-github");
+  if (footerGitHub && gh && gh !== "YOUR_GITHUB_USERNAME") {
+    footerGitHub.href = `https://github.com/${encodeURIComponent(gh)}`;
   }
 
-  const emailBtn = document.getElementById("header-email-copy");
-  const emailFeedback = document.getElementById("header-email-feedback");
+  const emailBtn = document.getElementById("email-copy");
+  const emailFeedback = document.getElementById("email-copy-feedback");
   const email = cfg.email || "";
   let copyTimer;
 

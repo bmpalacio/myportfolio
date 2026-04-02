@@ -16,7 +16,7 @@ Then visit `http://localhost:8080`.
 
 Edit [`config.js`](config.js):
 
-- `name`; `tagline` (meta / link previews only; contact is header icons)
+- `name`, `tagline`
 - `githubUsername` — used for avatar (`https://github.com/username.png`) and GitHub profile link
 - `linkedinUrl`
 - `lastUpdated` — bump when you change the site

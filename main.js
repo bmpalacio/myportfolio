@@ -28,18 +28,21 @@
     return `${m}/${day}/${yy}`;
   }
 
-  document.getElementById("site-name").textContent = cfg.name;
+  const nameEl = document.getElementById("site-name");
+  if (nameEl) nameEl.textContent = cfg.name;
 
   const gh = cfg.githubUsername;
   const avatarEl = document.getElementById("avatar");
-  if (gh && gh !== "YOUR_GITHUB_USERNAME") {
-    const profileUrl = `https://github.com/${encodeURIComponent(gh)}`;
-    avatarEl.src = `${profileUrl}.png`;
-    avatarEl.alt = `${cfg.name} — GitHub profile photo`;
-    avatarEl.hidden = false;
-  } else {
-    avatarEl.hidden = true;
-    avatarEl.alt = "";
+  if (avatarEl) {
+    if (gh && gh !== "YOUR_GITHUB_USERNAME") {
+      const profileUrl = `https://github.com/${encodeURIComponent(gh)}`;
+      avatarEl.src = `${profileUrl}.png`;
+      avatarEl.alt = `${cfg.name} — GitHub profile photo`;
+      avatarEl.removeAttribute("hidden");
+    } else {
+      avatarEl.setAttribute("hidden", "");
+      avatarEl.alt = "";
+    }
   }
 
   const footerLinkedIn = document.getElementById("footer-linkedin");
@@ -105,25 +108,27 @@
   }
 
   const list = document.getElementById("games-list");
-  list.innerHTML = "";
-  (cfg.games || []).forEach((g) => {
-    const href = safeHttpUrl(g.url);
-    if (!href) return;
-    const liEl = document.createElement("li");
-    liEl.className = "game-card";
-    const a = document.createElement("a");
-    a.className = "game-card__link";
-    a.href = href;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.innerHTML = `
+  if (list) {
+    list.innerHTML = "";
+    (cfg.games || []).forEach((g) => {
+      const href = safeHttpUrl(g.url);
+      if (!href) return;
+      const liEl = document.createElement("li");
+      liEl.className = "game-card";
+      const a = document.createElement("a");
+      a.className = "game-card__link";
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.innerHTML = `
       <span class="game-card__title">${esc(g.title)}</span>
       <span class="game-card__desc">${esc(g.description || "")}</span>
       <span class="game-card__cta">Play →</span>
     `;
-    liEl.appendChild(a);
-    list.appendChild(liEl);
-  });
+      liEl.appendChild(a);
+      list.appendChild(liEl);
+    });
+  }
 
   const pageTitle = `${cfg.name} — Portfolio`;
   document.title = pageTitle;

@@ -101,9 +101,7 @@
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </button>
-            <span id="email-copy-feedback" class="email-feedback" hidden
-              >Copied</span
-            >
+            <span id="email-copy-feedback" class="email-feedback" hidden>Copied</span>
           </div>
         </div>
       </div>
@@ -135,6 +133,39 @@
     </footer>
 
     <script src="config.js"></script>
+    <script>
+      /* If config.js fails to load, keep the page working (avatar + games). */
+      if (!window.SITE_CONFIG) {
+        window.SITE_CONFIG = {
+          name: "Bianca Palacio",
+          tagline: "Group Product Manager with 10 years in e-commerce",
+          githubUsername: "bmpalacio",
+          linkedinUrl: "https://www.linkedin.com/in/bpalacio6/",
+          email: "bianca.m.palacio@gmail.com",
+          lastUpdated: "2026-03-30",
+          games: [
+            {
+              title: "Stay afloat",
+              description:
+                "Stay afloat as long as you can. The game gets harder over time.",
+              url: "https://bmpalacio.github.io/stay-afloat/",
+            },
+            {
+              title: "Hero tower defense",
+              description:
+                "Defend your hero's tower against incoming enemies.",
+              url: "https://bmpalacio.github.io/hero-tower/",
+            },
+            {
+              title: "ePuzzle",
+              description:
+                "Upload any image and decide how many pieces to complete the puzzle.",
+              url: "https://bmpalacio.github.io/epuzzle/",
+            },
+          ],
+        };
+      }
+    </script>
     <script src="main.js"></script>
   </body>
 </html>

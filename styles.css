@@ -75,14 +75,15 @@ body {
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 400;
   line-height: 1.15;
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
 }
 
-.tagline {
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.05rem;
+.header__social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
 }
 
 .main {
@@ -169,15 +170,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 0.75rem 1rem;
-}
-
-.footer__social {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 0.5rem;
 }
 
 .icon-link {
@@ -223,11 +217,12 @@ body {
 }
 
 .footer__updated {
-  margin: 0 0 0 auto;
+  margin: 0;
   font-size: 0.8rem;
   color: var(--muted);
   white-space: nowrap;
   flex-shrink: 0;
+  text-align: right;
 }
 
 @media (max-width: 400px) {
@@ -261,6 +256,10 @@ body {
 
   .header__text {
     width: 100%;
+  }
+
+  .header__social {
+    justify-content: center;
   }
 
   .game-card__link {

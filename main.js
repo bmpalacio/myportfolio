@@ -29,7 +29,6 @@
   }
 
   document.getElementById("site-name").textContent = cfg.name;
-  document.getElementById("site-tagline").textContent = cfg.tagline;
 
   const gh = cfg.githubUsername;
   const avatarEl = document.getElementById("avatar");

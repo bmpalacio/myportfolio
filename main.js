@@ -20,6 +20,21 @@
     return s;
   }
 
+  /** GitHub Pages: /repo + no trailing slash breaks relative previews/... URLs. */
+  function resolvePreviewSrc(relPath) {
+    const u = new URL(window.location.href);
+    const p = u.pathname;
+    if (p.endsWith("/")) {
+      return new URL(relPath, u.href).href;
+    }
+    if (/\.html?$/i.test(p)) {
+      u.pathname = p.replace(/[^/]*$/, "");
+    } else {
+      u.pathname = `${p}/`;
+    }
+    return new URL(relPath, u.href).href;
+  }
+
   function formatMDY(iso) {
     if (!iso) return "";
     const d = new Date(iso + (iso.length === 10 ? "T12:00:00" : ""));
@@ -126,7 +141,7 @@
       if (thumbPath) {
         const img = document.createElement("img");
         img.className = "game-card__thumb";
-        img.src = thumbPath;
+        img.src = resolvePreviewSrc(thumbPath);
         img.alt = g.title ? String(g.title) : "";
         img.width = 152;
         img.height = 95;

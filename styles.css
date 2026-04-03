@@ -124,9 +124,9 @@ body {
 
 .game-card__link {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 1rem;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
   padding: 1rem 1.15rem;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -141,14 +141,28 @@ body {
   background: #1a2230;
 }
 
+.game-card__thumb {
+  width: 152px;
+  height: 95px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.game-card__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .game-card__title {
   font-weight: 600;
-  flex: 1 1 auto;
-  min-width: 8rem;
 }
 
 .game-card__desc {
-  flex: 1 1 100%;
   font-size: 0.92rem;
   color: var(--muted);
 }
@@ -156,7 +170,7 @@ body {
 .game-card__cta {
   font-size: 0.85rem;
   color: var(--accent);
-  margin-left: auto;
+  margin-top: 0.15rem;
 }
 
 .footer {
@@ -264,11 +278,15 @@ body {
 
   .game-card__link {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
-  .game-card__cta {
-    margin-left: 0;
+  .game-card__thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 152 / 95;
+    max-height: 180px;
   }
 
 }
+

@@ -2,12 +2,6 @@
   const cfg = window.SITE_CONFIG;
   if (!cfg) return;
 
-  const esc = (s) => {
-    const d = document.createElement("div");
-    d.textContent = s;
-    return d.innerHTML;
-  };
-
   function safeHttpUrl(u) {
     try {
       const parsed = new URL(u);
@@ -16,6 +10,14 @@
     } catch {
       return null;
     }
+  }
+
+  function safePreviewPath(p) {
+    if (typeof p !== "string" || !p) return null;
+    const s = p.trim();
+    if (!s.startsWith("previews/") || s.includes("..")) return null;
+    if (!/^previews\/[\w.-]+$/.test(s)) return null;
+    return s;
   }
 
   function formatMDY(iso) {
@@ -120,11 +122,33 @@
       a.href = href;
       a.target = "_blank";
       a.rel = "noopener noreferrer";
-      a.innerHTML = `
-      <span class="game-card__title">${esc(g.title)}</span>
-      <span class="game-card__desc">${esc(g.description || "")}</span>
-      <span class="game-card__cta">Play →</span>
-    `;
+      const thumbPath = safePreviewPath(g.preview);
+      if (thumbPath) {
+        const img = document.createElement("img");
+        img.className = "game-card__thumb";
+        img.src = thumbPath;
+        img.alt = g.title ? String(g.title) : "";
+        img.width = 152;
+        img.height = 95;
+        img.loading = "lazy";
+        img.decoding = "async";
+        a.appendChild(img);
+      }
+      const textWrap = document.createElement("span");
+      textWrap.className = "game-card__text";
+      const titleEl = document.createElement("span");
+      titleEl.className = "game-card__title";
+      titleEl.textContent = g.title;
+      const descEl = document.createElement("span");
+      descEl.className = "game-card__desc";
+      descEl.textContent = g.description || "";
+      const ctaEl = document.createElement("span");
+      ctaEl.className = "game-card__cta";
+      ctaEl.textContent = "Play →";
+      textWrap.appendChild(titleEl);
+      textWrap.appendChild(descEl);
+      textWrap.appendChild(ctaEl);
+      a.appendChild(textWrap);
       liEl.appendChild(a);
       list.appendChild(liEl);
     });

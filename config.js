@@ -7,8 +7,8 @@ window.SITE_CONFIG = {
   githubUsername: "bmpalacio",
   linkedinUrl: "https://www.linkedin.com/in/bpalacio6/",
   email: "bianca.m.palacio@gmail.com",
-  /** ISO date (YYYY-MM-DD); shown in footer as M/D/YY */
-  lastUpdated: "2026-03-30",
+  /** ISO date (YYYY-MM-DD); footer M/D/YY. Deploy workflow overwrites from latest commit date. */
+  lastUpdated: "2026-04-02",
   games: [
     {
       title: "Stay afloat",
